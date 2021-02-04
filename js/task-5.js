@@ -1,12 +1,12 @@
-const userCountry = prompt('В какую страну Вы хотите заказать доставку?');
-if(userCountry===null){
-    alert('Отменено пользователем');
-}
-else {
-const country = userCountry.toLowerCase();
-let price = 0;
+const countryInputRef = document.querySelector('.task-5__input');
+const btnRef = document.querySelector('.task-5__button');
 
-switch (country) {
+btnRef.addEventListener('click', () => {
+    let country = countryInputRef.value;
+    country = country.toLowerCase();
+    let price = 0;
+
+    switch (country) {
     case 'китай':
         price = 100;
         break;
@@ -24,14 +24,13 @@ switch (country) {
         break;
     default:
         alert('В вашей стране доставка не доступна');
-}
-if (price === 0) {
+    }
+    
+    if (price === 0) {
     alert('Попробуйте оформить доставку в другую страну');
-}
-else {
-    alert(`Доставка в ${userCountry} будет стоить ${price} кредитов`);
+    }
+    else {
+        alert(`Доставка в ${country} будет стоить ${price} кредитов`);
+    }
+})
 
-
-}
-
-}
