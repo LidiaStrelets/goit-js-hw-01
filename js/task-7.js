@@ -15,7 +15,11 @@ function isLoginUnique(allLogins, login) {
 }
 
 function addLogin(allLogins, login) {
-    if (isLoginValid(login) === false) {
+    if (login === null) {
+        return 'Некорректный ввод';
+    }
+    else {
+       if (isLoginValid(login) === false) {
         return 'Ошибка! Логин должен быть от 4 до 16 символов';
     }
     else {
@@ -26,7 +30,9 @@ function addLogin(allLogins, login) {
             allLogins.push(login);
             return 'Логин успешно добавлен!';
         }
+    } 
     }
+    
     
 }
 
@@ -34,6 +40,7 @@ console.log(addLogin(logins, 'Ajax')); // 'Логин успешно добав�
 console.log(addLogin(logins, 'robotGoogles')); // 'Такой логин уже используется!'
 console.log(addLogin(logins, 'Zod')); // 'Ошибка! Логин должен быть от 4 до 16 символов'
 console.log(addLogin(logins, 'jqueryisextremelyfast')); // 'Ошибка! Логин должен быть от 4 до 16 символов'
+console.log(addLogin(logins, prompt('Enter unique login:')));
 console.log(addLogin(logins, prompt('Enter unique login:')));
 
 // console.log(logins);
