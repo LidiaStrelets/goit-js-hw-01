@@ -1,24 +1,21 @@
-let credits = 23580;
-const pricePerDroid = 3000;
-let totalPrice;
+function formatString(string) {
+    return string.length > 40 ? 
+        string.slice(0,40)+'...'
+        : string;
+}
 
-const userQuantity = prompt('Сколько дроидов добавить в корзину?');
-const quantity = Number(userQuantity);
-const isText = isNaN(quantity);
+console.log(formatString('Curabitur ligula sapien, tincidunt non.'));
+// вернется оригинальная строка
 
-if (quantity == 0) {
-    console.log('Отменено пользователем!');
-}
-else if (isText === true) {
-    console.log('Ошибка ввода, введите число!');
-}
-else {
-    totalPrice = pricePerDroid * quantity;
-    if (totalPrice > credits) {
-        console.log('Недостаточно средств на счету!');
-    }
-    else {
-        credits -= totalPrice;
-        console.log(`Вы купили ${quantity} дроидов, на счету осталось ${credits} кредитов.`);
-    }
-}
+console.log(formatString('Vestibulum facilisis, purus nec pulvinar iaculis.'));
+// вернется форматированная строка
+
+console.log(formatString('Curabitur ligula sapien.'));
+// вернется оригинальная строка
+
+console.log(
+  formatString(
+    'Nunc sed turpis. Curabitur a felis in nunc fringilla tristique.',
+  ),
+);
+// вернется форматированная строка
