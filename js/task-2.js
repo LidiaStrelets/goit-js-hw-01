@@ -1,6 +1,6 @@
 function calculateEngravingPrice(message, pricePerWord) {
     const words = message.split(' ');
-    return words.length * pricePerWord;
+    return `Гравировка Вашей фразы будет стоить ${words.length * pricePerWord} кредитов`;
 }
 
 
