@@ -1,36 +1,23 @@
-const countryInputRef = document.querySelector('.task-5__input');
-const btnRef = document.querySelector('.task-5__button');
+const products = [
+  { name: 'Радар', price: 1300, quantity: 4 },
+  { name: 'Сканер', price: 2700, quantity: 3 },
+  { name: 'Дроид', price: 400, quantity: 7 },
+  { name: 'Захват', price: 1200, quantity: 2 },
+];
 
-btnRef.addEventListener('click', () => {
-    let country = countryInputRef.value;
-    country = country.toLowerCase();
-    let price = 0;
+const getAllPropValues = function(array, property) {
+    const values = [];
+    for (const item of array) {
+        if (item[property] === undefined) {
+            return values;
+        }
+        values.push(item[property]);
+    }
+    return values;
+};
 
-    switch (country) {
-    case 'китай':
-        price = 100;
-        break;
-    case 'чили':
-        price = 250;
-        break;
-    case 'австралия':
-        price = 170;
-        break;
-    case 'индия':
-        price = 80;
-        break;
-    case 'ямайка':
-        price = 120;
-        break;
-    default:
-        alert('В вашей стране доставка не доступна');
-    }
-    
-    if (price === 0) {
-    alert('Попробуйте оформить доставку в другую страну');
-    }
-    else {
-        alert(`Доставка в ${country} будет стоить ${price} кредитов`);
-    }
-})
+console.log(getAllPropValues(products, 'name')); // ['Радар', 'Сканер', 'Дроид', 'Захват']
 
+console.log(getAllPropValues(products, 'quantity')); // [4, 3, 7, 2]
+
+console.log(getAllPropValues(products, 'category')); // []

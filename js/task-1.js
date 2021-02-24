@@ -1,5 +1,16 @@
-const name = 'Генератор защитного поля';
-let price = 1000;
-console.log(`Выбран ${name}, цена за штуку ${price} кредитов`);
-price = 2000;
-console.log(`Выбран ${name}, цена за штуку ${price} кредитов`);
+const user = {
+  name: 'Mango',
+  age: 20,
+  hobby: 'html',
+  premium: true,
+};
+
+user.mood = 'happy';
+user.hobby = 'skydiving';
+user.premium = false;
+
+const keys = Object.keys(user);
+
+for (const key of keys) {
+    console.log(`Имя ключа: ${key}, его значение: ${user[key]}`);
+}
