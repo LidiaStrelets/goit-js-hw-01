@@ -1,36 +1,68 @@
-const countryInputRef = document.querySelector('.task-5__input');
-const btnRef = document.querySelector('.task-5__button');
+class Car {
+  static getSpecs({ maxSpeed, speed, isOn, distance, price } = {}) {
+    console.log(
+      `maxSpeed: ${maxSpeed}, speed: ${speed}, isOn: ${isOn}, distance: ${distance}, price: ${price}`
+    );
+  }
+  constructor({ maxSpeed, speed = 0, isOn = false, distance = 0, price } = {}) {
+    this.maxSpeed = maxSpeed;
+    this.speed = speed;
+    this.isOn = isOn;
+    this.distance = distance;
+    this._price = price;
+  }
 
-btnRef.addEventListener('click', () => {
-    let country = countryInputRef.value;
-    country = country.toLowerCase();
-    let price = 0;
+  get price() {
+    return this._price;
+  }
+  set price(newPrice) {
+    this._price = newPrice;
+  }
 
-    switch (country) {
-    case 'китай':
-        price = 100;
-        break;
-    case 'чили':
-        price = 250;
-        break;
-    case 'австралия':
-        price = 170;
-        break;
-    case 'индия':
-        price = 80;
-        break;
-    case 'ямайка':
-        price = 120;
-        break;
-    default:
-        alert('В вашей стране доставка не доступна');
-    }
-    
-    if (price === 0) {
-    alert('Попробуйте оформить доставку в другую страну');
-    }
-    else {
-        alert(`Доставка в ${country} будет стоить ${price} кредитов`);
-    }
-})
+  turnOn() {
+    this.isOn = true;
+  }
 
+  turnOff() {
+    this.isOn = false;
+    this.speed = 0;
+  }
+
+  accelerate(value) {
+    if (!(this.speed + value > this.maxSpeed)) {
+      this.speed += value;
+    }
+  }
+
+  decelerate(value) {
+    if (!(this.speed - value < 0)) {
+      this.speed -= value;
+    }
+  }
+
+  drive(hours) {
+    if (this.isOn) {
+      this.distance += hours * this.speed;
+    }
+  }
+}
+
+const mustang = new Car({ maxSpeed: 200, price: 2000 });
+
+mustang.turnOn();
+mustang.accelerate(50);
+mustang.drive(2);
+
+Car.getSpecs(mustang);
+// maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000
+
+mustang.decelerate(20);
+mustang.drive(1);
+mustang.turnOff();
+
+Car.getSpecs(mustang);
+// maxSpeed: 200, speed: 0, isOn: false, distance: 130, price: 2000
+
+console.log(mustang.price); // 2000
+mustang.price = 4000;
+console.log(mustang.price); // 4000

@@ -1,8 +1,29 @@
-const total = 100;
-const ordered = 130;
-if (total < ordered) {
-    console.log('На складе недостаточно твоаров!');
+class User {
+  constructor({ name, age, followers } = {}) {
+    this.name = name;
+    this.age = age;
+    this.followers = followers;
+  }
+  getInfo() {
+    const { name, age, followers } = this;
+    console.log(
+      `User ${name} is ${age} years old and has ${followers} followers`
+    );
+  }
 }
-else {
-    console.log('Заказ оформлен, с вами свяжется менеджер');
-}
+
+const mango = new User({
+  name: "Mango",
+  age: 2,
+  followers: 20,
+});
+
+mango.getInfo(); // User Mango is 2 years old and has 20 followers
+
+const poly = new User({
+  name: "Poly",
+  age: 3,
+  followers: 17,
+});
+
+poly.getInfo(); // User Poly is 3 years old and has 17 followers

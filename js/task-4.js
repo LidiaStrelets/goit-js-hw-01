@@ -1,24 +1,32 @@
-let credits = 23580;
-const pricePerDroid = 3000;
-let totalPrice;
+class StringBuilder {
+  constructor(value) {
+    this._value = value;
+  }
 
-const userQuantity = prompt('Сколько дроидов добавить в корзину?');
-const quantity = Number(userQuantity);
-const isText = isNaN(quantity);
+  get value() {
+    return this._value;
+  }
 
-if (quantity == 0) {
-    console.log('Отменено пользователем!');
+  append(str) {
+    this._value += str;
+  }
+
+  prepend(str) {
+    this._value = str + this._value;
+  }
+  pad(str) {
+    this._value = str + this._value + str;
+  }
 }
-else if (isText === true) {
-    console.log('Ошибка ввода, введите число!');
-}
-else {
-    totalPrice = pricePerDroid * quantity;
-    if (totalPrice > credits) {
-        console.log('Недостаточно средств на счету!');
-    }
-    else {
-        credits -= totalPrice;
-        console.log(`Вы купили ${quantity} дроидов, на счету осталось ${credits} кредитов.`);
-    }
-}
+
+const builder = new StringBuilder(".");
+
+console.log(builder.value); // '.'
+builder.append("^");
+console.log(builder.value); // '.^'
+
+builder.prepend("^");
+console.log(builder.value); // '^.^'
+
+builder.pad("=");
+console.log(builder.value); // '=^.^='
