@@ -85,7 +85,29 @@ const users = [
   },
 ];
 
-const getUsersWithEyeColor = (users, color) =>
-  users.filter((user) => user.eyeColor === color);
+const getSortedUniqueSkills = (users) =>
+  users
+    .flatMap((user) => user.skills)
+    .reduce((uniqueSkills, skill) => {
+      if (!uniqueSkills.includes(skill)) {
+        return [...uniqueSkills, skill];
+      }
+      return [...uniqueSkills];
+    }, [])
+    .sort((skill2, skill1) => {
+      if (skill1[0] > skill2[0]) {
+        return -1;
+      } else if (skill1[0] === skill2[0] && skill1[1] > skill2[1]) {
+        return -1;
+      } else if (
+        skill1[0] === skill2[0] &&
+        skill1[1] === skill2[1] &&
+        skill1[2] > skill2[2]
+      ) {
+        return -1;
+      }
+      return 1;
+    });
 
-console.table(getUsersWithEyeColor(users, "blue")); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+console.log(getSortedUniqueSkills(users));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]

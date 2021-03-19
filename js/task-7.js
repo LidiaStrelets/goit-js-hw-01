@@ -85,7 +85,7 @@ const users = [
   },
 ];
 
-const getUsersWithEyeColor = (users, color) =>
-  users.filter((user) => user.eyeColor === color);
+const calculateTotalBalance = (users) =>
+  users.reduce((salary, user) => salary + user.balance, 0);
 
-console.table(getUsersWithEyeColor(users, "blue")); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+console.log(calculateTotalBalance(users)); // 20916
